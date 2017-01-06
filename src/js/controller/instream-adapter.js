@@ -164,8 +164,10 @@ define([
             }
 
             if (_array && _arrayIndex + 1 < _array.length) {
-                // fire complete event
-                this.trigger(events.JWPLAYER_MEDIA_COMPLETE, data);
+                // fire complete event if not ad skipped
+                if (e.type !== events.JWPLAYER_AD_SKIPPED) {
+                    this.trigger(events.JWPLAYER_MEDIA_COMPLETE, data);
+                }
                 _loadNextItem();
             } else {
                 if (e.type === events.JWPLAYER_MEDIA_COMPLETE) {
